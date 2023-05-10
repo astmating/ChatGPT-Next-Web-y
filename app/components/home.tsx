@@ -98,13 +98,14 @@ function Screen() {
 
   return (
     <div 
-         style={background-color: white;
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                 }
+         style={{
+              backgroundColor: 'white',
+              position: 'fixed',
+              top: 0,
+              left: 0,
+              width: '100%',
+              height: '100%',
+  }}
     >
       我是黑色
     </div>
