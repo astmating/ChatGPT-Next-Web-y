@@ -98,13 +98,13 @@ function Screen() {
 
   return (
     <div className={class1}
-         style={
+         style={{
               backgroundColor: 'white',
               position: 'fixed',
               top: 0,
               left: 0,
               width: '100%',
-              height: '100%'}>
+              height: '100%'}}>
      我是黑色
     </div>
     
