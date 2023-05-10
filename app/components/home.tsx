@@ -107,6 +107,14 @@ function Screen() {
         }`
       }
     >
+      <div style={{
+                backgroundColor: 'white',
+                position: 'fixed',
+                top: 0,
+                left: 0,
+                width: '100%',
+                height: '100%'
+              }}>111</div>
       <SideBar className={isHome ? styles["sidebar-show"] : ""} />
 
       <div className={styles["window-content"]} id={SlotID.AppBody}>
