@@ -13,7 +13,8 @@ const UserQycode = () => {
     event.preventDefault();
 
     if (inputValue === "123") {
-      useMaskStore.removeMask(styles["UserQycode"]);
+      const { removeMask } = useMaskStore.getState();
+      removeMask(styles["UserQycode"]);
     }
   };
 
