@@ -53,9 +53,10 @@ export function useQycode() {
   const [inputValue, setInputValue] = useState("");
   const [isStyleCleared, setIsStyleCleared] = useState(false);
 
-  const handleInputChange = (e) => {
-    setInputValue(e.target.value);
-  };
+const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  setInputValue(e.target.value);
+};
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
