@@ -6,8 +6,6 @@ import { useState, useEffect } from "react";
 
 import styles from "./home.module.scss";
 
-import UserQycode from "./UserQycode";
-
 import BotIcon from "../icons/bot.svg";
 import LoadingIcon from "../icons/three-dots.svg";
 
@@ -136,7 +134,6 @@ export function Home() {
     <ErrorBoundary>
       <Router>
         <Screen />
-        <UserQycode />
       </Router>
     </ErrorBoundary>
   );
