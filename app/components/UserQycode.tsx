@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useSwitchTheme } from "./home.module.css";
+import { useSwitchTheme } from "./home";
 
 export function UserQycode() {
   const [inviteCode, setInviteCode] = useState("");
