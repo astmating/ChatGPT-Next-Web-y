@@ -1,37 +1,39 @@
 import React, { useState } from "react";
-import { useSwitchTheme } from "./home";
+import { useMaskStore } from "../store/mask";
+import styles from "./UserQycode.module.scss";
 
-export function UserQycode() {
-  const [inviteCode, setInviteCode] = useState("");
-  const [isCodeEntered, setIsCodeEntered] = useState(false);
+const UserQycode = () => {
+  const [inputValue, setInputValue] = useState("");
 
-  const handleSubmit = (event: React.FormEvent) => {
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setInputValue(event.target.value);
+  };
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    if (inviteCode === "123") {
-      setIsCodeEntered(true);
-      useSwitchTheme();
+    if (inputValue === "123") {
+      const { removeMask } = useMaskStore.getState();
+      removeMask(styles["UserQycode"]);
     }
   };
 
-  if (isCodeEntered) {
-    return null; // Hide the UserQycode component
-  }
-
   return (
-    <div className="UserQycode">
-      <div className="overlay"></div>
-      <div className="content">
-        <form onSubmit={handleSubmit}>
-          <input
-            type="text"
-            value={inviteCode}
-            onChange={(e) => setInviteCode(e.target.value)}
-            placeholder="Enter invite code"
-          />
-          <button type="submit">Submit</button>
-        </form>
-      </div>
+    <div className={`${styles.UserQycode} ${styles.overlay}`}>
+      <form className={styles.form} onSubmit={handleSubmit}>
+        <input
+          type="text"
+          value={inputValue}
+          onChange={handleInputChange}
+          className={styles.input}
+          placeholder="Enter invitation code"
+        />
+        <button type="submit" className={styles.button}>
+          Submit
+        </button>
+      </form>
     </div>
   );
-}
+};
+
+export default UserQycode;
