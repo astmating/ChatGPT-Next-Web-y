@@ -114,17 +114,14 @@ export function useSwitchTheme() {
   }, [config.theme]);
 }
 
-const useHasHydrated = () => {
+const useHasHydrated = (): (() => boolean) => {
   const [hasHydrated, setHasHydrated] = useState<boolean>(false);
-
-  useEffect(() => {
-    setHasHydrated  const [hasHydrated, setHasHydrated] = useState<boolean>(false);
 
   useEffect(() => {
     setHasHydrated(true);
   }, []);
 
-  return hasHydrated;
+  return () => hasHydrated;
 };
 
 function Screen() {
