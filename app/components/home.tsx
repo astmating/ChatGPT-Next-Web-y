@@ -49,6 +49,40 @@ const MaskPage = dynamic(async () => (await import("./mask")).MaskPage, {
   loading: () => <Loading noLogo />,
 });
 
+export function useQycode() {
+  const [inputValue, setInputValue] = useState("");
+  const [isStyleCleared, setIsStyleCleared] = useState(false);
+
+  const handleInputChange = (e) => {
+    setInputValue(e.target.value);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (inputValue === "123") {
+      setIsStyleCleared(true);
+    }
+  };
+
+  return (
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        height: "100vh",
+        ...(isStyleCleared && { display: "none" }),
+      }}
+    >
+      <form onSubmit={handleSubmit}>
+        <input type="text" value={inputValue} onChange={handleInputChange} />
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  );
+}
+
 export function useSwitchTheme() {
   const config = useAppConfig();
 
@@ -81,7 +115,7 @@ export function useSwitchTheme() {
 }
 
 const useHasHydrated = () => {
-  const [hasHydrated, setHasHydrated] = useState<boolean>(false);
+  const [hasHydrated, setHasHydrated] =  const [hasHydrated, setHasHydrated] = useState<boolean>(false);
 
   useEffect(() => {
     setHasHydrated(true);
@@ -133,7 +167,9 @@ export function Home() {
     <ErrorBoundary>
       <Router>
         <Screen />
+        <useQycode />
       </Router>
     </ErrorBoundary>
   );
 }
+
