@@ -4,10 +4,9 @@ require("../polyfill");
 
 import { useState, useEffect } from "react";
 
-import React from "react";
-import { UserQycode } from "./UserQycode";
-
 import styles from "./home.module.scss";
+
+import UserQycode from "./UserQycode";
 
 import BotIcon from "../icons/bot.svg";
 import LoadingIcon from "../icons/three-dots.svg";
@@ -26,6 +25,7 @@ import {
 } from "react-router-dom";
 import { SideBar } from "./sidebar";
 import { useAppConfig } from "../store/config";
+import { useMaskStore } from "../store/mask";
 
 export function Loading(props: { noLogo?: boolean }) {
   return (
@@ -51,40 +51,6 @@ const NewChat = dynamic(async () => (await import("./new-chat")).NewChat, {
 const MaskPage = dynamic(async () => (await import("./mask")).MaskPage, {
   loading: () => <Loading noLogo />,
 });
-
-export function UseQycode() {
-  const [inputValue, setInputValue] = useState("");
-  const [isStyleCleared, setIsStyleCleared] = useState(false);
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInputValue(e.target.value);
-  };
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    if (inputValue === "123") {
-      setIsStyleCleared(true);
-    }
-  };
-
-  return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        height: "100vh",
-        ...(isStyleCleared && { display: "none" }),
-      }}
-    >
-      <form onSubmit={handleSubmit}>
-        <input type="text" value={inputValue} onChange={handleInputChange} />
-        <button type="submit">Submit</button>
-      </form>
-    </div>
-  );
-}
 
 export function useSwitchTheme() {
   const config = useAppConfig();
@@ -117,14 +83,14 @@ export function useSwitchTheme() {
   }, [config.theme]);
 }
 
-const useHasHydrated = (): (() => boolean) => {
+const useHasHydrated = () => {
   const [hasHydrated, setHasHydrated] = useState<boolean>(false);
 
   useEffect(() => {
     setHasHydrated(true);
   }, []);
 
-  return () => hasHydrated;
+  return hasHydrated;
 };
 
 function Screen() {
@@ -145,7 +111,7 @@ function Screen() {
       }
     >
       <SideBar className={isHome ? styles["sidebar-show"] : ""} />
-      
+
       <div className={styles["window-content"]} id={SlotID.AppBody}>
         <Routes>
           <Route path={Path.Home} element={<Chat />} />
@@ -169,8 +135,8 @@ export function Home() {
   return (
     <ErrorBoundary>
       <Router>
-        <UserQycode /> {/* Add the UserQycode component */}
         <Screen />
+        <UserQycode />
       </Router>
     </ErrorBoundary>
   );
