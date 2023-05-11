@@ -49,16 +49,15 @@ const MaskPage = dynamic(async () => (await import("./mask")).MaskPage, {
   loading: () => <Loading noLogo />,
 });
 
-export function useQycode() {
+export function UseQycode() {
   const [inputValue, setInputValue] = useState("");
   const [isStyleCleared, setIsStyleCleared] = useState(false);
 
-const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-  setInputValue(e.target.value);
-};
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setInputValue(e.target.value);
+  };
 
-
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (inputValue === "123") {
@@ -119,6 +118,9 @@ const useHasHydrated = () => {
   const [hasHydrated, setHasHydrated] = useState<boolean>(false);
 
   useEffect(() => {
+    setHasHydrated  const [hasHydrated, setHasHydrated] = useState<boolean>(false);
+
+  useEffect(() => {
     setHasHydrated(true);
   }, []);
 
@@ -168,7 +170,7 @@ export function Home() {
     <ErrorBoundary>
       <Router>
         <Screen />
-        <useQycode />
+        <UseQycode />
       </Router>
     </ErrorBoundary>
   );
