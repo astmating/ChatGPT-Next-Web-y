@@ -4,6 +4,9 @@ require("../polyfill");
 
 import { useState, useEffect } from "react";
 
+import React from "react";
+import { UserQycode } from "./UserQycode";
+
 import styles from "./home.module.scss";
 
 import BotIcon from "../icons/bot.svg";
@@ -166,10 +169,9 @@ export function Home() {
   return (
     <ErrorBoundary>
       <Router>
+        <UserQycode /> {/* Add the UserQycode component */}
         <Screen />
-        <UseQycode />
       </Router>
     </ErrorBoundary>
   );
 }
-
