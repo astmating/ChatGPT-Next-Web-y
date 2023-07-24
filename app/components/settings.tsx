@@ -477,7 +477,7 @@ export function Settings() {
             <></>
           )}
           {/* API Key */}
-          {/*
+
           {!accessStore.hideUserApiKey ? (
             <ListItem
               title={Locale.Settings.Token.Title}
@@ -493,7 +493,6 @@ export function Settings() {
               />
             </ListItem>
           ) : null}
-          */}
           {/* 余额查询 */}
          {/*
           <ListItem title={Locale.Settings.Usage.Title}
